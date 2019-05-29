@@ -38,10 +38,12 @@
 
         <div class="uk-panel-box uk-panel-card" each="{ item,idx in items }" data-idx="{idx}">
 
+            { App.trigger('field.layout.components.label', {component: parent.components[item.component], item: item} ) } 
+
             <div class="uk-flex uk-flex-middle uk-text-small uk-visible-hover">
                 <img class="uk-margin-small-right" riot-src="{ parent.components[item.component].icon ? parent.components[item.component].icon : App.base('/assets/app/media/icons/component.svg')}" width="16">
                 <div class="uk-text-bold uk-text-truncate uk-flex-item-1">
-                    <a class="uk-link-muted" onclick="{ parent.settings }">{ item.name || parent.components[item.component].label || App.Utils.ucfirst(item.component) }</a>
+                    <a class="uk-link-muted" onclick="{ parent.settings }">{ item.name || parent.components[item.component].customLabel || parent.components[item.component].label || App.Utils.ucfirst(item.component) }</a>
                 </div>
                 <div class="uk-text-small uk-invisible">
                     <a onclick="{ parent.addComponent }" title="{ App.i18n.get('Add Component') }"><i class="uk-icon-plus"></i></a>
